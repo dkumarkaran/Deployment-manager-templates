@@ -1,0 +1,22 @@
+#creating a instance.
+
+resources:
+  - name: the-first-vm
+    type: compute.v1.instance
+    properties:
+      zone: asia-south1-a
+      machineType: https://www.googleapis.com/compute/v1/projects/new-project-356711/zones/asia-south1-a/machineTypes/e2-medium
+      disks:
+      - deviceName: boot
+        type: PERSISTENT
+        boot: true
+        autoDelete: true
+        initializeParams:
+          sourceImage: https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-7-wheezy-v20150423
+      networkInterfaces: #creating a vm in custom vpc.
+  
+      - network: https://www.googleapis.com/compute/v1/projects/new-project-356711/global/networks/chainlink-dev-vpc
+        subnetwork: https://www.googleapis.com/compute/v1/projects/new-project-356711/regions/asia-south1/subnetworks/mumbai-pub
+        accessConfigs:
+        - name: External NAT
+          type: ONE_TO_ONE_NAT
