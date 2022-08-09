@@ -1,4 +1,6 @@
+
 #creating a instance.
+# Options Included: private vm,service account,custom vpc.
 
 resources:
   - name: the-first-vm
@@ -17,6 +19,10 @@ resources:
   
       - network: https://www.googleapis.com/compute/v1/projects/new-project-356711/global/networks/chainlink-dev-vpc
         subnetwork: https://www.googleapis.com/compute/v1/projects/new-project-356711/regions/asia-south1/subnetworks/mumbai-pub
-        accessConfigs:
+        accessConfigs: # note : if we want to make the vm private (without external ip) , remove the accessConfig block.
         - name: External NAT
           type: ONE_TO_ONE_NAT
+      - serviceAccounts:
+        email: karan-gcp-services-access@new-project-356711.iam.gserviceaccount.com
+
+
