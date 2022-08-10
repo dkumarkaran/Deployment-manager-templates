@@ -1,0 +1,12 @@
+
+imports:
+  - path: https://raw.githubusercontent.com/GoogleCloudPlatform/deploymentmanager-samples/master/examples/v2/vm_startup_script/python/vm_template.py
+  
+resources:
+  - name: my-vm
+    type: https://raw.githubusercontent.com/GoogleCloudPlatform/deploymentmanager-samples/master/examples/v2/vm_startup_script/python/vm_template.py
+    properties:
+      zone: us-central1-a
+      startup-script: |
+        #!/bin/bash
+        python -m SimpleHTTPServer 8080
